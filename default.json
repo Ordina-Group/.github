@@ -1,0 +1,11 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Best practice preset for Java projects",
+  "extends": [
+    "config:base",
+    ":timezone(Europe/Brussels)",
+    "schedule:nonOfficeHours",
+    "docker:pinDigests",
+    "helpers:pinGitHubActionDigests"
+  ]
+}
