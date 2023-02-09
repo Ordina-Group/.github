@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Best practice preset for frontend application projects",
+  "extends": [
+    "config:js-app",
+    ":timezone(Europe/Brussels)",
+    "schedule:nonOfficeHours",
+    ":maintainLockFilesWeekly",
+    "npm:unpublishSafe",
+    "docker:pinDigests",
+    "helpers:pinGitHubActionDigests"
+  ]
+}
