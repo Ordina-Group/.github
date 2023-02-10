@@ -1,6 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "Best practice preset for frontend application projects",
+  "description": [
+    "Best practice preset for frontend application projects",
+    "Best practice preset for projects that need dependency pinning and lock file maintenance"
+  ],
   "extends": [
     "config:js-app",
     ":timezone(Europe/Brussels)",
