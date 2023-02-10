@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": [
-    "Base preset to configure automerge for GitHub with pull requests and squash merges",
+    "Base preset to configure automerge with pull requests and squash merges",
     "Should be combined with `:automergePatch`, `:automergeMinor` or `:automergeAll`, depending on project maturity level"
   ],
   "extends": [
