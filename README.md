@@ -6,7 +6,7 @@ If a repository does not have one of these resources defined, the ones from this
 * Pull request templates
 * Code of conduct
 * Security policy
-* Organsiation profile
+* Organisation profile
 * renovate-config.json is used as config for onboarding new repositories with Renovate
 * Possibly more?
 

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Configure automerge with pull requests and squash merges",
+    "Allow you to enable automerge with `:automergePatch`, `:automergeMinor` or `:automergeAll` or other methods"
+  ],
+  "extends": [
+    ":automergePr",
+    "schedule:automergeNonOfficeHours"
+  ],
+  "automergeStrategy": "squash"
+}

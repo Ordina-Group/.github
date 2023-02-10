@@ -1,6 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "local>ordina-jworks/.github:renovate-config"
-  ]
+    "local>ordina-jworks/.github:renovate-config",
+    "local>ordina-jworks/.github:automerge",
+    ":automergeAll"
+  ],
+  "platformAutomerge": true
 }
