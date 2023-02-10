@@ -1,8 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": [
-    "Best practice preset for Java projects",
-    "Best practice preset for projects that don't need dependency pinning and lock file maintenance"
+    "Apply best practice preset for Java projects",
+    "Apply best practice preset for projects that don't need dependency pinning and lock file maintenance"
   ],
   "extends": [
     "config:base",

@@ -1,8 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": [
-    "Base preset to configure automerge with pull requests and squash merges",
-    "Should be combined with `:automergePatch`, `:automergeMinor` or `:automergeAll`, depending on project maturity level"
+    "Configure automerge with pull requests and squash merges",
+    "Allow you to enable automerge with `:automergePatch`, `:automergeMinor` or `:automergeAll` or other methods"
   ],
   "extends": [
     ":automergePr",
