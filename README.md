@@ -1,5 +1,5 @@
 # .github
-.github is a ✨special ✨ repository, that effects other repositories.
+.github is a ✨special✨ repository, that effects other repositories.
 
 If a repository does not have one of these resources defined, the ones from this repository will be used if present:
 * Issue templates
