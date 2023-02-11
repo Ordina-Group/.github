@@ -1,12 +1,19 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": [
-    "Configure automerge with pull requests and squash merges",
-    "Allow you to enable automerge with `:automergePatch`, `:automergeMinor` or `:automergeAll` or other methods"
+    "Configure auto-merge with pull requests and squash merges",
+    "Enables auto-merging for pin and pinDigest",
+    "Allow you to enable more auto-merges with `:automergePatch`, `:automergeMinor` or `:automergeAll` or other methods"
   ],
   "extends": [
     ":automergePr",
     "schedule:automergeNonOfficeHours"
   ],
-  "automergeStrategy": "squash"
+  "automergeStrategy": "squash",
+  "pin": {
+    "automerge": true
+  },
+  "pinDigest": {
+    "automerge": true
+  }
 }
