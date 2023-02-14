@@ -5,6 +5,7 @@
     "Recreate closed pull requests for pin and pinDigest"
   ],
   "extends": [
+    ":semanticCommits",
     ":timezone(Europe/Brussels)",
     "schedule:nonOfficeHours",
     "docker:pinDigests",
