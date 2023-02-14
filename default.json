@@ -6,9 +6,6 @@
   ],
   "extends": [
     "config:base",
-    ":timezone(Europe/Brussels)",
-    "schedule:nonOfficeHours",
-    "docker:pinDigests",
-    "helpers:pinGitHubActionDigests"
+    "local>ordina-jworks/.github:base"
   ]
 }
