@@ -6,11 +6,8 @@
   ],
   "extends": [
     "config:js-app",
-    ":timezone(Europe/Brussels)",
-    "schedule:nonOfficeHours",
+    "local>ordina-jworks/.github:base",
     ":maintainLockFilesWeekly",
-    "npm:unpublishSafe",
-    "docker:pinDigests",
-    "helpers:pinGitHubActionDigests"
+    "npm:unpublishSafe"
   ]
 }

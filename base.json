@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Configure digest pinning for Docker and GitHub Actions",
+    "Recreate closed pull requests for pin and pinDigest"
+  ],
+  "extends": [
+    ":timezone(Europe/Brussels)",
+    "schedule:nonOfficeHours",
+    "docker:pinDigests",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "pin": {
+    "recreateClosed": true
+  },
+  "pinDigest": {
+    "recreateClosed": true
+  }
+}
