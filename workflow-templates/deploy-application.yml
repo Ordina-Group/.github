@@ -1,7 +1,7 @@
 # Workflow to deploy to an AWS environment with maven, terraform, build-image
 # This workflow requires the maven wrapper to be in the root of the project
 
-name: 'Deploy to AWS'
+name: Deploy to AWS
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
 
   deploy_infra:
     needs: release_please
-    name: "Deploy infra"
+    name: Deploy infra
     runs-on: self-hosted
     environment: dev
 
@@ -68,7 +68,7 @@ jobs:
         run: terraform apply -lock-timeout=5m -auto-approve
 
   build_application:
-    name: "Build application and push to ECR"
+    name: Build application and push to ECR
     needs: deploy_infra
     runs-on: self-hosted
     environment: dev
@@ -134,7 +134,7 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      - name: install aws cli
+      - name: Install AWS cli
         uses: unfor19/install-aws-cli-action@v1
 
       - name: Configure AWS credentials

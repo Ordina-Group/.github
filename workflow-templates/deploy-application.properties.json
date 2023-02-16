@@ -1,12 +1,12 @@
 {
   "name": "Spring Boot on Kubernetes with Terraform and Helm deployment template",
-  "description": "Starter workflow to deploy a Spring Boot application to Kubernetes using terraform and Helm",
+  "description": "Starter workflow to deploy a Spring Boot application to Kubernetes using Terraform and Helm",
   "icon":"octicon rocket",
   "categories": [
     "Java",
     "Maven",
     "Spring",
-    "terraform",
+    "Terraform",
     "Kubernetes",
     "Helm",
     "Deployment"

@@ -1,6 +1,6 @@
 # workflow to run terraform plan on Dev
 
-name: 'Terraform plan'
+name: Terraform plan
 
 on:
   pull_request:
@@ -18,7 +18,7 @@ env:
 
 jobs:
   terraform:
-    name: 'Terraform plan'
+    name: Terraform plan
     runs-on: self-hosted
     timeout-minutes: 5
 
