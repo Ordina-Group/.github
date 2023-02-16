@@ -21,7 +21,7 @@ permissions:
 
 jobs:
   validate-renovate-config:
-    name: 'Validate Renovate config'
+    name: Validate Renovate config
     runs-on: self-hosted
     timeout-minutes: 5
 
