@@ -1,0 +1,10 @@
+{
+  "name": "Validate Renovate Configuration",
+  "description": "CI Starter workflow to check if a Renovate configuration is valid",
+  "filePatterns": [
+    "renovate.json"
+  ],
+  "categories": [
+    "CI"
+  ]
+}
