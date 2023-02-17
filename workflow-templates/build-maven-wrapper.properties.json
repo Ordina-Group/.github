@@ -1,0 +1,9 @@
+{
+  "name": "Build with Maven wrapper",
+  "description": "Starter workflow to build and test application with Maven wrapper",
+  "categories": [
+    "Java",
+    "Maven",
+    "CI"
+  ]
+}

@@ -1,0 +1,159 @@
+# Workflow to deploy to an AWS environment with maven, terraform, build-image
+# This workflow requires the maven wrapper to be in the root of the project
+
+name: Deploy to AWS
+
+on:
+  push:
+    branches:
+      - $default-branch
+
+concurrency:
+  group: ${{ github.workflow }}
+
+env:
+  AWS_REGION: 'eu-west-1'
+  AWS_ROLE: '' # TODO Fill in the role to assume for your deployment
+  TF_DIR_INFRA: '' # TODO Fill in the terraform directory for your infra deployment
+  TF_DIR_HELM: '' # TODO Fill in the terraform directory for your helm deployment
+  JAVA_VERSION: '17'
+
+jobs:
+
+  deploy_infra:
+    needs: release_please
+    name: Deploy infra
+    runs-on: self-hosted
+    environment: dev
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.TF_DIR_INFRA }}
+
+    permissions:
+      contents: read
+      id-token: write  # This is required for requesting the JWT
+
+    steps:
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838 # v1
+        with:
+          role-to-assume: ${{ env.AWS_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3
+        with:
+          node-version: 'lts/*'
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@633666f66e0061ca3b725c73b2ec20cd13a8fdd1 # v2
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -lock-timeout=5m
+
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -lock-timeout=5m -auto-approve
+
+  build_application:
+    name: Build application and push to ECR
+    needs: deploy_infra
+    runs-on: self-hosted
+    environment: dev
+
+    permissions:
+      contents: read
+      id-token: write  # This is required for requesting the JWT
+
+    env:
+      ECR_REPOSITORY: '' # TODO set to your ECR repository name
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@3f07048e3d294f56e9b90ac5ea2c6f74e9ad0f98 # v3
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'liberica'
+          cache: 'maven'
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838 # v1
+        with:
+          role-to-assume: ${{ env.AWS_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@261a7de32bda11ba01f4d75c4ed6caf3739e54be # v1
+
+      - name: Build with Maven
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$ECR_REGISTRY/$ECR_REPOSITORY:${{github.run_number}}
+
+      - name: Push image to ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{github.run_number}}
+
+  deploy_application:
+    needs: build_application
+    runs-on: self-hosted
+    environment: dev
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.TF_DIR_HELM }}
+
+    permissions:
+      contents: read
+      id-token: write  # This is required for requesting the JWT
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
+
+      - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3
+        with:
+          node-version: 'lts/*'
+
+      - name: Install AWS cli
+        uses: unfor19/install-aws-cli-action@v1
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838 # v1
+        with:
+          role-to-assume: ${{ env.AWS_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@633666f66e0061ca3b725c73b2ec20cd13a8fdd1 # v2
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -lock-timeout=5m -var="image_tag=${{github.run_number}}"
+
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -lock-timeout=5m -auto-approve -var="image_tag=${{github.run_number}}"
