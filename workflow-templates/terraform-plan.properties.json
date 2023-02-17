@@ -3,6 +3,6 @@
   "description": "Perform a terraform plan on AWS as CI solution",
   "category": [
     "Terraform",
-    "CI"
+    "Continuous-integration"
   ]
 }
