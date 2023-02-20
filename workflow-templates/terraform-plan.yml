@@ -15,6 +15,7 @@ env:
   AWS_REGION: 'eu-west-1'
   AWS_ROLE: '' # TODO Fill in the role to assume for your deployment
   TF_DIR: '' # TODO Fill in the terraform directory for your deployment
+  NODE_VERSION: 'lts/*'
 
 jobs:
   terraform:
@@ -44,7 +45,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3
         with:
-          node-version: 'lts/*'
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@633666f66e0061ca3b725c73b2ec20cd13a8fdd1 # v2
@@ -59,8 +60,8 @@ jobs:
 
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color
+        run: terraform validate
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color
+        run: terraform plan
