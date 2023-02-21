@@ -19,11 +19,13 @@ jobs:
     strategy:
       matrix:
         file:
+          - renovate
           - base
           - default
           - renovate-config
           - frontend
           - automerge
+          - dependencyLocking
       fail-fast: true
     env:
       RENOVATE_CONFIG_FILE: ${{ matrix.file }}.json
