@@ -1,9 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": [
-    "Apply best practice preset for frontend application projects",
-    "Apply best practice preset for projects that need dependency pinning and lock file maintenance"
-  ],
+  "description": "Apply best practice preset for frontend application projects",
   "extends": [
     "config:js-app",
     "local>ordina-jworks/.github:base",
