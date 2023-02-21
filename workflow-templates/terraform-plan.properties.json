@@ -1,7 +1,7 @@
 {
   "name": "Perform terraform plan on AWS",
   "description": "Perform a terraform plan on AWS as CI solution",
-  "category": [
+  "categories": [
     "Terraform",
     "Continuous-integration"
   ]
