@@ -5,6 +5,7 @@
     "renovate.json"
   ],
   "categories": [
+    "JSON",
     "Continuous-integration"
   ]
 }
