@@ -16,5 +16,38 @@
   },
   "pinDigest": {
     "recreateClosed": true
-  }
+  },
+  "packageRules": [
+    {
+      "description": "Treat these plugins as fix",
+      "matchDepNames": [
+        "org.springframework.boot"
+      ],
+      "matchDepPatterns": [
+        "org.jetbrains.kotlin.*"
+      ],
+      "semanticCommitType": "fix"
+    },
+    {
+      "description": "Treat these plugins majors as feat",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "matchDepNames": [
+        "org.springframework.boot"
+      ],
+      "matchDepPatterns": [
+        "org.jetbrains.kotlin.*"
+      ],
+      "semanticCommitType": "feat"
+    },
+    {
+      "description": "Pin GitHub Actions",
+      "depTypeList": [
+        "action"
+      ],
+      "extractVersion": "^(?<version>v\\d+\\.\\d+\\.\\d+)$",
+      "versioning": "regex:^v(?<major>\\d+)(\\.(?<minor>\\d+)\\.(?<patch>\\d+))?$"
+    }
+  ]
 }
