@@ -34,9 +34,26 @@ jobs:
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
 
       - name: Setup Node.js environment
-        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
+        id: setup-node
+        uses: actions/setup-node@v3.6.0
         with:
-          node-version: 'lts/*'
+          node-version: lts/*
 
-      - name: Validate Renovate config
-        run: npx --package renovate -c renovate-config-validator
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        shell: bash
+        run: echo "dir=$(npm --global config get cache)" >> ${GITHUB_OUTPUT}
+
+      - name: Get npm renovate version
+        id: npm-renovate-version
+        shell: bash
+        run: echo "renovate-version=$(npm view renovate version)" >> ${GITHUB_OUTPUT}
+
+      - name: global npm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ steps.setup-node.outputs.node-version }}-renovate-${{ steps.npm-renovate-version.outputs.renovate-version }}
+
+      - name: Run renovate-config-validator
+        run: npx -p renovate -c 'renovate-config-validator'
