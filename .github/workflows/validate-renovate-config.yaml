@@ -23,7 +23,7 @@ jobs:
 
       - name: Setup Node.js environment
         id: setup-node
-        uses: actions/setup-node@v3.6.0
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
           node-version: lts/*
 
@@ -38,7 +38,7 @@ jobs:
         run: echo "renovate-version=$(npm view renovate version)" >> ${GITHUB_OUTPUT}
 
       - name: global npm cache
-        uses: actions/cache@v3
+        uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-node-${{ steps.setup-node.outputs.node-version }}-renovate-${{ steps.npm-renovate-version.outputs.renovate-version }}
