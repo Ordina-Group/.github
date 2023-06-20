@@ -29,19 +29,6 @@
       "semanticCommitType": "fix"
     },
     {
-      "description": "Treat these plugins majors as feat",
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "matchDepNames": [
-        "org.springframework.boot"
-      ],
-      "matchDepPatterns": [
-        "org.jetbrains.kotlin.*"
-      ],
-      "semanticCommitType": "feat"
-    },
-    {
       "description": "Pin GitHub Actions",
       "depTypeList": [
         "action"
