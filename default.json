@@ -6,6 +6,6 @@
   ],
   "extends": [
     "config:base",
-    "local>ordina-jworks/.github:base"
+    "local>Ordina-Group/.github:base"
   ]
 }

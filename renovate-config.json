@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "Apply onboarding preset for use with ordina-jworks repos",
+  "description": "Apply onboarding preset for use with Ordina-Group repos",
   "extends": [
-    "local>ordina-jworks/.github"
+    "local>Ordina-Group/.github"
   ]
 }

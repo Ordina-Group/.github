@@ -3,7 +3,7 @@
   "description": "Apply best practice preset for frontend application projects",
   "extends": [
     "config:js-app",
-    "local>ordina-jworks/.github:base",
+    "local>Ordina-Group/.github:base",
     ":maintainLockFilesWeekly",
     "npm:unpublishSafe"
   ]
