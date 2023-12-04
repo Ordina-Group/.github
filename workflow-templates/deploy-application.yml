@@ -142,7 +142,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Install AWS cli
-        uses: unfor19/install-aws-cli-action@3c53dab4dd62b5d9d647f0ce9519285250a3c767 # v1.0.6
+        uses: unfor19/install-aws-cli-action@e8b481e524a99f37fbd39fdc1dcb3341ab091367 # v1.0.7
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@010d0da01d0b5a38af31e9c3470dbfdabdecca3a # v4.0.1
