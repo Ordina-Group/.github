@@ -5,7 +5,7 @@
     "Apply best practice preset for projects that don't need dependency pinning and lock file maintenance"
   ],
   "extends": [
-    "config:base",
+    "config:best-practices",
     "local>Ordina-Group/.github:base"
   ]
 }

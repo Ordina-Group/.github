@@ -8,15 +8,8 @@
     ":semanticCommits",
     ":timezone(Europe/Brussels)",
     "schedule:nonOfficeHours",
-    "docker:pinDigests",
     "helpers:pinGitHubActionDigestsToSemver"
   ],
-  "pin": {
-    "recreateClosed": true
-  },
-  "pinDigest": {
-    "recreateClosed": true
-  },
   "packageRules": [
     {
       "description": "Treat these plugins as fix",
