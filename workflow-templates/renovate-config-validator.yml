@@ -50,7 +50,7 @@ jobs:
         run: echo "renovate-version=$(npm view renovate version)" >> ${GITHUB_OUTPUT}
 
       - name: global npm cache
-        uses: actions/cache@3624ceb22c1c5a301c8db4169662070a689d9ea8 # v4.1.1
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-node-${{ steps.setup-node.outputs.node-version }}-renovate-${{ steps.npm-renovate-version.outputs.renovate-version }}
